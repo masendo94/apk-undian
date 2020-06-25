@@ -134,7 +134,7 @@
       $('#tombol2').on('click', function(){
         
         const acak = setInterval(() => {
-          let arr = [1,2,3,4,5,0];
+          let arr = [1,2,3,4,5,0,6,7,8,9];
           const angka = arr[Math.floor(Math.random() * arr.length)];
           $('#kolom2').val(angka);
         },1);

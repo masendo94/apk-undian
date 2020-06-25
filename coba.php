@@ -10,7 +10,7 @@
         <nav class="navbar navbar-expand navbar-primary bg-primary topbar mb-4 static-top shadow" >
 
         <a href="kelompok2.php"><h4 style="color: white; font-weight: bold;">UNDIAN SI JAKA USP MINATANI</h4></a>
-
+          <a href="index.php" class="btn btn-success ml-3" style="margin-left:50%;">Home</a>
         </nav>
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -26,23 +26,39 @@
                 </div>
                 <div class="col-md-2">
                   <input type="text" name="kolom1" id="kolom1" class="form-control" value="-" style="text-align:center; font-size:200px;">
-                  <button class="btn btn-primary mt-2 btn-block" id="tombol1">acak</button>
                 </div>
                 <div class="col-md-2">
                   <input type="text" name="kolom2" id="kolom2" class="form-control" value="-" style="text-align:center; font-size:200px;">
-                  <button class="btn btn-primary mt-2 btn-block" id="tombol2">acak</button>
                 </div>
                 <div class="col-md-2">
                   <input type="text" name="kolom3" id="kolom3" class="form-control" value="-" style="text-align:center; font-size:200px;">
-                  <button class="btn btn-primary mt-2 btn-block" id="tombol3">acak</button>
                 </div>
                 <div class="col-md-2">
                   <input type="text" name="kolom4" id="kolom4" class="form-control" value="-" style="text-align:center; font-size:200px;">
-                  <button class="btn btn-primary mt-2 btn-block" id="tombol4">acak</button>
+                 </div>
+              </div><!--ahir row-->
+                <div class="row">
+                <div class="col-md-4 mt-2">
+                    <a href="" class="btn btn-success btn-block" id="validasi">Ulangi</a>
                 </div>
-                
-                <div class="col-md-12 mt-2">
-                    <button class="btn btn-success btn-block" id="validasi">CEK PEMENANG</button>
+                <div class="col-md-2">
+                  <button class="btn btn-primary mt-2 btn-block" id="tombol1">Mulai</button>
+                  <button class="btn btn-danger mt-2 btn-block" id="tombol1-stop">Berhenti</button>
+                </div>
+                <div class="col-md-2">
+                  <button class="btn btn-primary mt-2 btn-block" id="tombol2">Mulai</button>
+                  <button class="btn btn-danger mt-2 btn-block" id="tombol2-stop">Berhenti</button>
+                </div>
+                <div class="col-md-2">
+                  <button class="btn btn-primary mt-2 btn-block" id="tombol3">Mulai</button>
+                  <button class="btn btn-danger mt-2 btn-block" id="tombol3-stop">Berhenti</button>
+                </div>
+                <div class="col-md-2">
+                  <button class="btn btn-primary mt-2 btn-block" id="tombol4">Mulai</button>
+                  <button class="btn btn-danger mt-2 btn-block" id="tombol4-stop">Berhenti</button>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-dark mt-2 btn-block" id="cek">Cek Pemenang</button>
                 </div>
               </div><!--ahir row-->
                 
@@ -55,6 +71,7 @@
             
             <div class="col-md-4 text-dark">
               <h5>List Pemenang</h5>
+              <a href="reset.php" class="btn btn-warning" ><span class="fas fa-history"></span></a>
               <table class="table table-striped small" style="font-weight:bold;">
                 <tr>
                   <td>No</td>
@@ -106,39 +123,47 @@
   <script src="js/sb-admin-2.min.js"></script>
   <script>
     $(function(){
+      $('#tombol1-stop').hide();
+      $('#tombol2-stop').hide();
+      $('#tombol3-stop').hide();
+      $('#tombol4-stop').hide();
+      $('#tombol2').hide();
+      $('#tombol3').hide();
+      $('#tombol4').hide();
       $('#tombol1').on('click', function(){
+        $(this).hide();
+        $('#tombol1-stop').show();
 
         const acak = setInterval(() => {
           let arr = [1,2,3,4,5,0];
           const angka = arr[Math.floor(Math.random() * arr.length)];
           $('#kolom1').val(angka);
         },1);
-        $(this).keyup(function(event){
-			    if(event.keyCode === 13){
-				// alert('oke');
-            
+        $('#tombol1-stop').on('click',function(){
             clearInterval(acak); 
+          $('#tombol2').show();
+          $(this).disable();
             let arr = [1,0,2,3,4,5];
             const angka = arr[Math.floor(Math.random() * arr.length)];
             $('#kolom1').val(angka);
-          
-			  }
 		});
 
       });
 
       // tombol kedua
       $('#tombol2').on('click', function(){
-        
+        $(this).hide();
+        $('#tombol2-stop').show();
         const acak = setInterval(() => {
           let arr = [1,2,3,4,5,0,6,7,8,9];
           const angka = arr[Math.floor(Math.random() * arr.length)];
           $('#kolom2').val(angka);
         },1);
 
-        $(this).keyup(function(event){
-              if(event.keyCode === 13){
-                clearInterval(acak);
+        $('#tombol2-stop').on('click', function(){
+            $('#tombol3').show();
+            clearInterval(acak);
+            $(this).disable();
             // alert('oke');
             let arr = [];
               const kolom1 = $('#kolom1').val();
@@ -149,22 +174,24 @@
               }
               const angka = arr[Math.floor(Math.random() * arr.length)];
               $('#kolom2').val(angka); 
-
-            }
         });
 
       });
 
       // tombol 3
       $('#tombol3').on('click', function(){
+        $(this).hide();
+        $('#tombol3-stop').show();
         const acak = setInterval(() => {
           let arr = [1,2,3,4,5,6,7,8,9,0];
           const angka = arr[Math.floor(Math.random() * arr.length)];
           $('#kolom3').val(angka);  
         },1);
 
-        $(this).keyup(function(event){
+        $('#tombol3-stop').on('click', function(){
+          $('#tombol4').show();
           clearInterval(acak);
+          $(this).disable();
           let arr = [];
           const kolom2 = $('#kolom2').val();
           if(kolom2 < 5 ){
@@ -179,14 +206,17 @@
 
       // tombol 4
       $('#tombol4').on('click', function(){
+        $(this).hide();
+        $('#tombol4-stop').show();
         const acak = setInterval(() => {
             let arr = [1,2,3,4,5,6,7,8,9,0];
           const angka = arr[Math.floor(Math.random() * arr.length)];
           $('#kolom4').val(angka);
         },1);
 
-        $(this).keyup(function(event){
+        $('#tombol4-stop').on('click', function(){
           clearInterval(acak);
+          $(this).disable();
           // let arr = [];
           const kolom3 = $('#kolom3').val();
           // if(kolom3 < 5 ){
@@ -201,7 +231,8 @@
       });
 
       // tombol validasi
-      $('#validasi').on('click', function(){
+      $('#cek').on('click', function(){
+        // alert('oke');
         const a1 = $('#kolom1').val();
         const a2 = $('#kolom2').val();
         const a3 = $('#kolom3').val();
@@ -216,7 +247,7 @@
           dataType : 'json',
           success : (hasil) => {
             const url = "input.php";
-            $('#pemenang').html(`<form action="input1.php" method="POST">
+            $('#pemenang').html(`<form action="input.php" method="POST">
               <table>
                 <tr>
                     <td><label>No Undian</label></td>
@@ -235,8 +266,8 @@
               <button type="submit" class="btn btn-warning btn-block mt-2">Simpan</button>
             </form>`)
           }
-        })
-      })
+        });
+      });
     });
   </script>
 
