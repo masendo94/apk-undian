@@ -10,7 +10,7 @@
         <nav class="navbar navbar-expand navbar-primary bg-primary topbar mb-4 static-top shadow" >
 
         <a href="kelompok2.php"><h4 style="color: white; font-weight: bold;">UNDIAN SI JAKA USP MINATANI</h4></a>
-          <a href="index.php" class="btn btn-success ml-3" style="margin-left:50%;">Home</a>
+          <a href="index.php" class="btn btn-success" style="margin-left:70%;">Home</a>
         </nav>
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -71,7 +71,7 @@
             
             <div class="col-md-4 text-dark">
               <h5>List Pemenang</h5>
-              <a href="reset.php" class="btn btn-warning" ><span class="fas fa-history"></span></a>
+              <a href="reset.php" class="btn btn-warning" ><span class="fas fa-history">Reset</span></a>
               <table class="table table-striped small" style="font-weight:bold;">
                 <tr>
                   <td>No</td>
@@ -135,15 +135,15 @@
         $('#tombol1-stop').show();
 
         const acak = setInterval(() => {
-          let arr = [1,2,3,4,5,0];
+          let arr = [1,2,0];
           const angka = arr[Math.floor(Math.random() * arr.length)];
           $('#kolom1').val(angka);
         },1);
         $('#tombol1-stop').on('click',function(){
             clearInterval(acak); 
           $('#tombol2').show();
-          $(this).disable();
-            let arr = [1,0,2,3,4,5];
+          $(this).attr('disabled','disabled');
+            let arr = [1,0,2];
             const angka = arr[Math.floor(Math.random() * arr.length)];
             $('#kolom1').val(angka);
 		});
@@ -163,14 +163,14 @@
         $('#tombol2-stop').on('click', function(){
             $('#tombol3').show();
             clearInterval(acak);
-            $(this).disable();
+            $(this).attr('disabled','disabled');
             // alert('oke');
             let arr = [];
               const kolom1 = $('#kolom1').val();
-              if(kolom1 < 5){
+              if(kolom1 < 2){
                 arr = [0,1,2,3,4,5,6,7,8,9];
               }else{
-                arr = [0];
+                arr = [0,1,2,3,4,5,6,7,8];
               }
               const angka = arr[Math.floor(Math.random() * arr.length)];
               $('#kolom2').val(angka); 
@@ -191,13 +191,13 @@
         $('#tombol3-stop').on('click', function(){
           $('#tombol4').show();
           clearInterval(acak);
-          $(this).disable();
+          $(this).attr('disabled','disabled');
           let arr = [];
           const kolom2 = $('#kolom2').val();
-          if(kolom2 < 5 ){
+          if(kolom2 < 8 ){
             arr = [1,2,3,4,5,6,7,8,9,0];
           }else{
-            arr = [0];
+            arr = [0,1];
           }
           const angka = arr[Math.floor(Math.random() * arr.length)];
           $('#kolom3').val(angka);
@@ -216,7 +216,7 @@
 
         $('#tombol4-stop').on('click', function(){
           clearInterval(acak);
-          $(this).disable();
+          $(this).attr('disabled','disabled');
           // let arr = [];
           const kolom3 = $('#kolom3').val();
           // if(kolom3 < 5 ){
@@ -262,7 +262,7 @@
                     <td><input type="text" name="alamat" class="form-control" value="${hasil.alamat}" readonly ></td>
                 </tr>
               </table>
-              <input type="text" name="kelompok_id" class="form-control" value="${hasil.kelompok}">
+              <input type="hidden" name="kelompok_id" class="form-control" value="${hasil.kelompok}">
               <button type="submit" class="btn btn-warning btn-block mt-2">Simpan</button>
             </form>`)
           }

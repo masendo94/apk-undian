@@ -10,7 +10,7 @@
   <nav class="navbar navbar-expand navbar-primary bg-primary topbar mb-4 static-top shadow" >
 
   <a href="kelompok2.php"><h4 style="color: white; font-weight: bold;">UNDIAN SI JAKA USP MINATANI</h4></a>
-    <a href="index.php" class="btn btn-success ml-3" style="margin-left:50%;">Home</a>
+    <a href="index.php" class="btn btn-success" style="margin-left:70%;">Home</a>
   </nav>
   <!-- Begin Page Content -->
   <div class="container-fluid">
@@ -71,7 +71,7 @@
       
       <div class="col-md-4 text-dark">
         <h5>List Pemenang</h5>
-        <a href="reset.php" class="btn btn-warning" ><span class="fas fa-history"></span></a>
+        <a href="reset.php" class="btn btn-warning" ><span class="fas fa-history">Reset</span></a>
         <table class="table table-striped small" style="font-weight:bold;">
           <tr>
             <td>No</td>
@@ -132,15 +132,15 @@
         $(this).hide();
         $('#tombol1-stop').show();
         const acak = setInterval(() => {
-          const animasi = [1,2,0];
-          const angka = animasi[Math.floor(Math.random() * animasi.length)];
+          let arr = [1,2,0];
+          const angka = arr[Math.floor(Math.random() * arr.length)];
           $('#kolom1').val(angka);
         },1);
         $('#tombol1-stop').on('click',function(){
+            $(this).attr('disabled','disabled');
             clearInterval(acak); 
             $('#tombol2').show();
-            const arr = [1,2];
-            $(this).disable();
+            let arr = [1,2];
             const angka = arr[Math.floor(Math.random() * arr.length)];
             $('#kolom1').val(angka);
 		});
@@ -158,10 +158,10 @@
           $('#kolom2').val(angka);
         },1);
 
-        $('#tombol2-stop').on('click', function(event){
+        $('#tombol2-stop').on('click', function(){
+            $(this).attr('disabled','disabled');
             $('#tombol3').show();
             clearInterval(acak);
-            $(this).disable();
 
             let arr = [];
               const kolom1 = $('#kolom1').val();
@@ -189,7 +189,7 @@
         $('#tombol3-stop').on('click',function(){
           $('#tombol4').show();
           clearInterval(acak);
-          $(this).disable();
+          $(this).attr('disabled','disabled');
           let arr = [];
           const kolom1 = $('#kolom1').val();
           const kolom2 = $('#kolom2').val();
@@ -226,7 +226,7 @@
 
         $('#tombol4-stop').on('click',function(){
           clearInterval(acak);
-          $(this).disable();
+          $(this).attr('disabled','disabled');
           let arr = [];
           const kolom1 = $('#kolom1').val();
           const kolom2 = $('#kolom2').val();
@@ -276,7 +276,7 @@
                     <td><input type="text" name="alamat" class="form-control" value="${hasil.alamat}"></td>
                 </tr>
               </table>
-              <input type="text" name="kelompok_id" class="form-control" value="${hasil.kelompok}">
+              <input type="hidden" name="kelompok_id" class="form-control" value="${hasil.kelompok}">
               <button type="submit" class="btn btn-warning btn-block mt-2">Simpan</button>
               </form>
               
