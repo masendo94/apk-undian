@@ -9,7 +9,7 @@
   <!-- Topbar -->
   <nav class="navbar navbar-expand navbar-primary bg-primary topbar mb-4 static-top shadow" >
 
-  <a href="kelompok2.php"><h4 style="color: white; font-weight: bold;">UNDIAN SI JAKA USP MINATANI</h4></a>
+  <h4 style="color: white; font-weight: bold;">UNDIAN SI JAKA USP MINATANI</h4>
     <a href="index.php" class="btn btn-success" style="margin-left:70%;">Home</a>
   </nav>
   <!-- Begin Page Content -->
@@ -39,7 +39,7 @@
         </div><!--ahir row-->
           <div class="row">
           <div class="col-md-4 mt-2">
-              <a href="" class="btn btn-success btn-block" id="validasi">Ulangi</a>
+              <a href="" class="btn btn-danger btn-block">Ulangi</a>
           </div>
           <div class="col-md-2">
             <button class="btn btn-primary mt-2 btn-block" id="tombol1">Mulai</button>
@@ -58,7 +58,7 @@
             <button class="btn btn-danger mt-2 btn-block" id="tombol4-stop">Berhenti</button>
           </div>
           <div class="col-md-4">
-            <button class="btn btn-dark mt-2 btn-block" id="cek">Cek Pemenang</button>
+            <button class="btn btn-dark my-2 btn-block" id="cek">Cek Pemenang</button>
           </div>
         </div><!--ahir row-->
           
@@ -70,30 +70,35 @@
       </div><!--ahir col md 8-->
       
       <div class="col-md-4 text-dark">
-        <h5>List Pemenang</h5>
-        <a href="reset.php" class="btn btn-warning" ><span class="fas fa-history">Reset</span></a>
-        <table class="table table-striped small" style="font-weight:bold;">
-          <tr>
-            <td>No</td>
-            <td>No Undian</td>
-            <td>Nama</td>
-            <td>Alamat</td>
-          </tr>
-          <!-- php -->
-          <?php
-          $n = 1;
-          $sql = mysqli_query($conn,"SELECT nama, no_undian, alamat FROM tbl_anggota, history WHERE `tbl_anggota`.`id` = `history`.`anggota_id` ORDER BY `history`.`id` ASC");
-          while($row = mysqli_fetch_array($sql)) :
-              $no = $row['no_undian']; 
-          ?>
-          <tr>
-            <td><?= $n++; ?></td>
-            <td><?= sprintf('%06d',$no); ?></td>
-            <td><?=$row['nama'];?></td>
-            <td><?=$row['alamat'];?></td>
-          </tr>
-        <?php endwhile ;?>
-        </table>
+        <div class="card border-left-info shadow ">
+          <div class="card-body">
+            <h5>List Pemenang</h5>
+            <a href="reset1.php" class="btn btn-warning" >Reset</a>
+              <a href="list_pemenang.php" class="btn btn-primary">Selesai</a>
+            <table class="table table-striped small" style="font-weight:bold;">
+              <tr>
+                <td>No</td>
+                <td>No Undian</td>
+                <td>Nama</td>
+                <td>Alamat</td>
+              </tr>
+              <!-- php -->
+              <?php
+              $n = 1;
+              $sql = mysqli_query($conn,"SELECT nama, no_undian, alamat FROM tbl_anggota, history WHERE `tbl_anggota`.`id` = `history`.`anggota_id` ORDER BY `history`.`id` ASC");
+              while($row = mysqli_fetch_array($sql)) :
+                  $no = $row['no_undian']; 
+              ?>
+              <tr>
+                <td><?= $n++; ?></td>
+                <td><?= sprintf('%06d',$no); ?></td>
+                <td><?=$row['nama'];?></td>
+                <td><?=$row['alamat'];?></td>
+              </tr>
+            <?php endwhile ;?>
+            </table>
+          </div>
+        </div>
       </div><!--ahir col md 4-->
     </div><!--ahir row utama-->
 
@@ -223,7 +228,7 @@
           clearInterval(acak);
           $(this).attr('disabled','disabled');
           clearInterval(acak);
-            arr = [1,2,3,4,5,6,7,8,0];
+            arr = [1,2,3,4,5,6,7,8,0,9];
           const angka = arr[Math.floor(Math.random() * arr.length)];
           $('#kolom4').val(angka);
         })
@@ -245,24 +250,28 @@
           dataType : 'json',
           success : (hasil) => {
             $('#pemenang').html(`
-              <form action="input1.php" method="post">
-              <table>
-                <tr>
-                    <td><label>No Undian</label></td>
-                    <td><input type="text" name="no_undian" class="form-control" value="${hasil.no_undian}" readonly ></td>
-                <tr>
-                <tr>
-                    <td><label>Nama</label></td>
-                    <td><input type="text" name="nama" class="form-control" value="${hasil.nama}" readonly ></td>
-                </tr>
-                <tr>
-                    <td><label>Alamat</label></td>
-                    <td><input type="text" name="alamat" class="form-control" value="${hasil.alamat}" readonly ></td>
-                </tr>
-              </table>
-              <input type="hidden" name="kelompok_id" class="form-control" value="${hasil.kelompok}">
-              <button type="submit" class="btn btn-warning btn-block mt-2">Simpan</button>
-              </form>
+              <form action="input1.php" method="post">            
+              <div class="card border-left-info shadow ">
+                <div class="card-body">
+                  <table> 
+                    <tr>
+                        <td><label>No Undian</label></td>
+                        <td><input type="text" name="no_undian" class="form-control" value="${hasil.no_undian}" readonly ></td>
+                    <tr>
+                    <tr>
+                        <td><label>Nama</label></td>
+                        <td><input type="text" name="nama" class="form-control" value="${hasil.nama}" readonly ></td>
+                    </tr>
+                    <tr>
+                        <td><label>Alamat</label></td>
+                        <td><input type="text" name="alamat" class="form-control" value="${hasil.alamat}" readonly ></td>
+                    </tr>
+                  </table>
+                  <input type="hidden" name="kelompok_id" class="form-control" value="${hasil.kelompok}">
+                  <button type="submit" class="btn btn-warning btn-block mt-2">Simpan</button>
+                  </form>
+                </div>
+              </div>
             `)
           }
         })

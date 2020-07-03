@@ -18,7 +18,14 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
+<style>
+  #content-wrapper{
+    background-image : url('vendor/img/bg.jpg');
+    background-size: cover;
+    height : 750px;
+    opacity: 1;
+  }
+</style>
 </head>
 
 <body id="page-top">

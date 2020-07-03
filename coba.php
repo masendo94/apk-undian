@@ -39,7 +39,7 @@
               </div><!--ahir row-->
                 <div class="row">
                 <div class="col-md-4 mt-2">
-                    <a href="" class="btn btn-success btn-block" id="validasi">Ulangi</a>
+                    <a href="" class="btn btn-danger btn-block">Ulangi</a>
                 </div>
                 <div class="col-md-2">
                   <button class="btn btn-primary mt-2 btn-block" id="tombol1">Mulai</button>
@@ -57,7 +57,7 @@
                   <button class="btn btn-primary mt-2 btn-block" id="tombol4">Mulai</button>
                   <button class="btn btn-danger mt-2 btn-block" id="tombol4-stop">Berhenti</button>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 mb-2">
                   <button class="btn btn-dark mt-2 btn-block" id="cek">Cek Pemenang</button>
                 </div>
               </div><!--ahir row-->
@@ -70,8 +70,12 @@
             </div><!--ahir col md 8-->
             
             <div class="col-md-4 text-dark">
-              <h5>List Pemenang</h5>
-              <a href="reset.php" class="btn btn-warning" ><span class="fas fa-history">Reset</span></a>
+             <!-- Earnings (Monthly) Card Example -->
+              <div class="card border-left-info shadow ">
+                <div class="card-body">
+                <h5>List Pemenang</h5>
+              <a href="reset.php" class="btn btn-warning" >Reset</a>
+              <a href="list_pemenang.php" class="btn btn-primary">Selesai</a>
               <table class="table table-striped small" style="font-weight:bold;">
                 <tr>
                   <td>No</td>
@@ -94,6 +98,8 @@
                 </tr>
               <?php endwhile ;?>
               </table>
+              </div>
+            </div>
             </div><!--ahir col md 4-->
           </div><!--ahir row utama-->
 
@@ -248,23 +254,27 @@
           success : (hasil) => {
             const url = "input.php";
             $('#pemenang').html(`<form action="input.php" method="POST">
-              <table>
-                <tr>
-                    <td><label>No Undian</label></td>
-                    <td><input type="text" name="no_undian" class="form-control" value="${hasil.no_undian}" readonly ></td>
-                <tr>
-                <tr>
-                    <td><label>Nama</label></td>
-                    <td><input type="text" name="nama" class="form-control" value="${hasil.nama}" readonly ></td>
-                </tr>
-                <tr>
-                    <td><label>Alamat</label></td>
-                    <td><input type="text" name="alamat" class="form-control" value="${hasil.alamat}" readonly ></td>
-                </tr>
-              </table>
-              <input type="hidden" name="kelompok_id" class="form-control" value="${hasil.kelompok}">
-              <button type="submit" class="btn btn-warning btn-block mt-2">Simpan</button>
-            </form>`)
+            <div class="card border-left-info shadow py-2">
+              <div class="card-body">
+                <table>
+                  <tr>
+                      <td><label>No Undian</label></td>
+                      <td><input type="text" name="no_undian" class="form-control" value="${hasil.no_undian}" readonly ></td>
+                  <tr>
+                  <tr>
+                      <td><label>Nama</label></td>
+                      <td><input type="text" name="nama" class="form-control" value="${hasil.nama}" readonly ></td>
+                  </tr>
+                  <tr>
+                      <td><label>Alamat</label></td>
+                      <td><input type="text" name="alamat" class="form-control" value="${hasil.alamat}" readonly ></td>
+                  </tr>
+                </table>
+                <input type="hidden" name="kelompok_id" class="form-control" value="${hasil.kelompok}">
+                <button type="submit" class="btn btn-warning btn-block mt-2">Simpan</button>
+              </form>
+            </div>
+          </div>`)
           }
         });
       });
