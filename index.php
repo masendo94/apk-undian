@@ -8,7 +8,7 @@
         <!-- Topbar -->
          <nav class="navbar navbar-expand navbar-primary bg-primary topbar mb-4 static-top shadow" >
 
-        <h4 style="color: white; font-weight: bold;">UNDIAN SI JAKA USP MINATANI</h4>
+        <h4 style="color: white; font-weight: bold;"></h4>
 
         </nav>
         <!-- End of Topbar -->
